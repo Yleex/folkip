@@ -20,8 +20,8 @@ function _getCallerFile() {
 }
 
 let where;
-module.exports.log = (detail) => {
-  where = _getCallerFile();
+module.exports.log = (detail /*Detail*/, w /*where*/) => {
+  where = _getCallerFile() || w;
 
   console.log(
 
@@ -30,4 +30,29 @@ module.exports.log = (detail) => {
       : "[LOG] (" + where + "): " + detail
     
   )
+
+  where = undefined;
+}
+
+module.exports._err = (
+  name /*Error name*/,
+  detail /*Detail*/,
+  w /*where*/,
+  crucial = true /*Crucial?*/
+) => {
+
+  where == _getCallerFile() || w;
+
+  console.error(
+
+    (
+      where === undefined
+
+      ? `[${name} ERROR]: ${detail}`
+      : `[${name} ERROR] (${where}): ${detail}`
+
+    )
+  )
+
+  where = undefined;
 }

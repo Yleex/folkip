@@ -7,10 +7,12 @@ module.exports.writeSongUserInfo = (s /*Song object*/) => {
     path.join(__dirname, '/songuserinfo.json'),
 
     (
-      s === undefined
+      (
+        s === undefined
         || s === null
         || s === {}
         || typeof s !== 'object'
+      )
         
       ? "\"no-data\""
       : JSON.stringify(s)

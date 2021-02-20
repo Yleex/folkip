@@ -58,7 +58,7 @@ module.exports = app; // Exportar el objeto de la app
 let menu = new Menu();
 
 menu = require('./other/utils/app-menu')();
-// Poner el menu de la app. Dirigirse ala rchivo para mas info
+// Poner el menu de la app. Dirigirse al archivo para mas info
 
 Menu.setApplicationMenu(menu);
 
