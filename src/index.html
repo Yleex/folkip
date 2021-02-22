@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <title>Folkip</title>
     <link rel="stylesheet" href="css/index.css">
+    <!--Vue-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   </head>
   <body>
-    <h1>Hola mundo</h1>
-    <p>Aqui va la main page</p>
+    <!--Aqui se cargarán elementos de Vue.js-->
+    <div id="app">
+      <div v-for="cancion in canciones" style="padding: 5px; margin: 5px;">
+        <p>{{ cancion.nombre }}: {{ cancion.likes }} likes</p>
+      </div>
+    </div>
+
+    <script src="vue-utils.js"></script>
   </body>
 </html>

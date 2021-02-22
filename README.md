@@ -13,7 +13,7 @@ En folkip, no pondremos anuncios cada x canciones para ganar dinero, de hecho, *
 
 ## Estado
 
-De momento, folkip esta en pleno desarrollo, pero [el equipo de folkip](/AUTHORS.md) se esfuerza todo lo que puede en acabarlo lo antes posible. 
+De momento, folkip esta en pleno desarrollo, pero se intenta que puede en acabarlo lo antes posible. 
 
 ## Contacto
 

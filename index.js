@@ -1,4 +1,5 @@
 const { app, BrowserWindow, Menu, MenuItem } = require("electron");
+const db = require('./src/other/database/connect');
 const path = require('path');
 const os = require('os');
 
@@ -12,7 +13,7 @@ const createWindow = () => {
     height: 600
   });
 
-  mainWindow.loadFile(path.join(__dirname, '/index.html')); // Cargar pagina principal
+  mainWindow.loadFile(path.join(__dirname, 'src/index.html')); // Cargar pagina principal
 
   switch (os.platform()) {
     // Poner logo. Depende de la plataforma, el formato de archivo debe ser diferente.
@@ -36,12 +37,14 @@ const createWindow = () => {
   //mainWindow.webContents.openDevTools(); // Iniciar las developer tools -> no lo queremos.
 };
 
-app.on('ready', createWindow); // Cuando la aplicacion este lista, que se inicie.
+app.on('ready', () => { createWindow(); db.connect(); });
+// Cuando la aplicacion este lista, que se inicie y se conecte a la DB.
 
 
 app.on('window-all-closed', () => { // Cuando se cierre la app
   if (process.platform !== 'darwin') { // Esto es para evitar un error de macOS
     app.quit(); // Cerrar la app.
+    db.disconnect(); // Desconectar la DB
   }
 }); 
 
@@ -57,7 +60,7 @@ module.exports = app; // Exportar el objeto de la app
 
 let menu = new Menu();
 
-menu = require('./other/utils/app-menu')();
+menu = require('./src/other/utils/app-menu')();
 // Poner el menu de la app. Dirigirse al archivo para mas info
 
 Menu.setApplicationMenu(menu);

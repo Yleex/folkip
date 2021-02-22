@@ -1,8 +1,8 @@
 function _getCallerFile() {
   try {
-    var err = new Error();
-    var callerfile;
-    var currentfile;
+    let err = new Error();
+    let callerfile;
+    let currentfile;
 
     //Error.prepareStackTrace = function (err, stack) {
     //  return "undefined";
@@ -34,7 +34,7 @@ module.exports.log = (detail /*Detail*/, w /*where*/) => {
   where = undefined;
 }
 
-module.exports._err = (
+module.exports.error = (
   name /*Error name*/,
   detail /*Detail*/,
   w /*where*/,
@@ -44,15 +44,11 @@ module.exports._err = (
   where == _getCallerFile() || w;
 
   console.error(
-
-    (
-      where === undefined
-
-      ? `[${name} ERROR]: ${detail}`
-      : `[${name} ERROR] (${where}): ${detail}`
-
-    )
-  )
+    where === undefined
+      ? `[${name.toUpperCase()} ERROR]: ${detail}`
+      : `[${name.toUpperCase()} ERROR] (${where}): ${detail}`
+  );
 
   where = undefined;
+  return crucial ? process.exit(1) : undefined;
 }
